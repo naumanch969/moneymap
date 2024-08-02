@@ -1,1 +1,7 @@
 export { default as Login } from './Login'
+export { default as Header } from './home/header'
+export { default as Chart } from './home/chart'
+export { default as CategoryList } from './home/CategoryList'
+export { default as ColorPicker } from './ColorPicker'
+export { default as CategoryItems } from './categoryDetails/CategoryItems'
+export { default as CategoryInfo } from './categoryDetails/CategoryInfo'

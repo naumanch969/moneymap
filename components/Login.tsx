@@ -33,7 +33,7 @@ const Login = () => {
         style={{ width: '100%', height: 350, marginTop: 30, borderWidth: 5, borderColor: Colors.BLACK, borderRadius: 20 }}
       />
       <View style={{ backgroundColor: Colors.PRIMARY, width: '100%', height: '100%', padding: 20, marginTop: -20, borderTopRightRadius: 30, borderTopLeftRadius: 30 }} >
-        <Text style={{ fontSize: 35, fontWeight: 'bold', textAlign: 'center', color: Colors.WHITE }} >Personal Budget Plan</Text>
+        <Text style={{ fontSize: 35, fontFamily: 'outfit-bold', textAlign: 'center', color: Colors.WHITE }} >Personal Budget Plan</Text>
         <Text style={{ fontSize: 18, textAlign: 'center', color: Colors.WHITE, marginTop: 20 }} >Stay on track, Eveny by Event: Your Personal Budget Planner App</Text>
         <TouchableOpacity onPress={onPress} style={{ backgroundColor: Colors.WHITE, padding: 20, paddingHorizontal: 15, borderRadius: 99, marginTop: 30 }} >
           <Text style={{ textAlign: 'center', color: Colors.PRIMARY }} >Login/Signup</Text>

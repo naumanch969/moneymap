@@ -4,6 +4,9 @@ import { ClerkProvider, ClerkLoaded, SignedIn, SignedOut } from "@clerk/clerk-ex
 import { Login } from '@/components'
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 import { SafeAreaProvider } from "react-native-safe-area-context";
+import { useFonts } from "expo-font";
+import { ContextProvider } from "@/context/useStateContext";
+import { Colors } from "@/constants/Colors";
 
 const tokenCache = {
   async getToken(key: string) {
@@ -35,23 +38,35 @@ const publishableKey = process.env.EXPO_PUBLIC_CLERK_PUBLISHABLE_KEY!;
 
 export default function RootLayout() {
 
+  useFonts({
+    'outfit': require('../assets/fonts/Outfit-Regular.ttf'),
+    'outfit-medium': require('../assets/fonts/Outfit-Medium.ttf'),
+    'outfit-bold': require('../assets/fonts/Outfit-Bold.ttf'),
+  })
+
+
   return (
     <ClerkProvider tokenCache={tokenCache} publishableKey={publishableKey}>
       <ClerkLoaded>
 
-        <SignedIn>
-          <GestureHandlerRootView style={{ flex: 1 }} >
-            <SafeAreaProvider>
-              <Stack screenOptions={{ headerShown: false }} >
-                <Stack.Screen name="(tabs)" />
-              </Stack>
-            </SafeAreaProvider>
-          </GestureHandlerRootView>
-        </SignedIn>
+        <ContextProvider>
+          <SignedIn>
+            <GestureHandlerRootView style={{ flex: 1 }} >
+              <SafeAreaProvider style={{ backgroundColor: Colors.PRIMARY }} >
+                <Stack screenOptions={{ headerShown: false }} >
+                  <Stack.Screen name="(tabs)" />
+                  <Stack.Screen name="add-category" options={{ presentation: 'modal', headerShown: true, headerTitle: 'Add New Category' }} />
+                  <Stack.Screen name="add-category-item" options={{ presentation: 'modal', headerShown: true, headerTitle: 'Add Category Item' }} />
+                </Stack>
+              </SafeAreaProvider>
+            </GestureHandlerRootView>
+          </SignedIn>
 
-        <SignedOut>
-          <Login />
-        </SignedOut>
+          <SignedOut>
+            <Login />
+          </SignedOut>
+        </ContextProvider>
+
       </ClerkLoaded>
     </ClerkProvider>
   );
